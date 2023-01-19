@@ -1,0 +1,82 @@
+.job_container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  background-color: #fff;
+  padding: 0.8em;
+  border-radius: 0.4em;
+
+  img {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .description {
+    h2 {
+      font-size: 0.75em;
+    }
+    h3 {
+      font-weight: 300;
+      font-size: 0.9em;
+      margin-top: 0.5em;
+    }
+
+    .workmode {
+      border: 1px solid #334680;
+      border-radius: 0.25em;
+      width: max-content;
+      padding: 0.3em;
+      margin-top: 0.8em;
+      p {
+        font-size: 0.75em;
+        color: #334680;
+        font-weight: bold;
+      }
+    }
+
+    .location_date {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.6em;
+      div {
+        display: flex;
+        gap: 0.4em;
+      }
+
+      div p {
+        color: #b9bdcf;
+        font-size: 0.75em;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .job_container {
+    font-size: 1.4rem;
+    img {
+      max-width: 200px;
+    }
+  }
+}
+
+@media (min-width: 1280px) {
+  .job_container {
+    font-size: 1rem;
+
+    img {
+      max-width: 150px;
+    }
+  }
+}
+
+@media (min-width: 1536px) {
+  .job_container {
+    font-size: 1.5rem;
+
+    img {
+      max-width: 200px;
+    }
+  }
+}
