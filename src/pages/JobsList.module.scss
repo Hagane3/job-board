@@ -1,9 +1,53 @@
 .jobs_list {
   width: 90%;
+  max-width: 800px;
   margin: 0 auto;
+
   ul {
-    margin: 2rem 0;
     display: grid;
     gap: 1rem;
+    grid-column: 1/3;
+  }
+
+  .container {
+    margin: 2rem 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+    ul {
+      gap: 1rem;
+    }
+
+    .filter {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      grid-column: 1/3;
+    }
+  }
+}
+
+@media (min-width: 1280px) {
+  .jobs_list {
+    max-width: none;
+
+    .container {
+      grid-template-columns: 1fr 2fr;
+
+      .filter {
+        grid-column: 1/2;
+        border: 1px solid black;
+      }
+
+      ul {
+        grid-column: 2/3;
+      }
+    }
+  }
+}
+
+@media (min-width: 1536px) {
+  .jobs_list {
+    width: 70%;
   }
 }

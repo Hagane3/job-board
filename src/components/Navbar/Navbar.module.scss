@@ -1,5 +1,11 @@
 .navbar {
-  h1 {
-    padding: 0.5rem 0.5rem;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    font-size: 1.4rem;
   }
 }

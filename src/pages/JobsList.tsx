@@ -10,13 +10,18 @@ function JobsList() {
   return (
     <section className={classes.jobs_list}>
       <Searchbar />
-      <ul>
-        <JobItem />
-        <JobItem />
-        <JobItem />
-        <JobItem />
-        <JobItem />
-      </ul>
+      <div className={classes.container}>
+        <div className={classes.filter}>
+          <h1>MOCK</h1>
+        </div>
+        <ul>
+          <JobItem />
+          <JobItem />
+          <JobItem />
+          <JobItem />
+          <JobItem />
+        </ul>
+      </div>
     </section>
   );
 }
