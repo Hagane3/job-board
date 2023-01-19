@@ -1,0 +1,52 @@
+.job_container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  background-color: #fff;
+  padding: 0.8rem;
+  border-radius: 0.4rem;
+
+  img {
+    width: 100%;
+  }
+
+  .description {
+    h2 {
+      font-size: 0.75rem;
+    }
+    h3 {
+      font-weight: 300;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .workmode {
+      border: 1px solid #334680;
+      border-radius: 0.25rem;
+      width: max-content;
+      padding: 0.3rem;
+      margin-top: 0.8rem;
+      p {
+        font-size: 0.75rem;
+        color: #334680;
+        font-weight: bold;
+      }
+    }
+
+    .location_date {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.6rem;
+      div {
+        display: flex;
+        gap: 0.4rem;
+      }
+
+      div p {
+        color: #b9bdcf;
+        font-size: 0.75rem;
+      }
+    }
+  }
+}
