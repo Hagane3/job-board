@@ -11,7 +11,7 @@
 
 - React
 - TypeScript
-- SerpApi - https://serpapi.com/
+- Custom firebase API based on SerpApi - https://serpapi.com/
 
 ## Features
 
