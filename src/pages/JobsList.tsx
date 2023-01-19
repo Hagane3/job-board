@@ -1,7 +1,12 @@
-import React from "react";
+import Searchbar from "../components/UI/Searchbar";
+import classes from "./JobsList.module.scss";
 
 function JobsList() {
-  return <div>JobsList</div>;
+  return (
+    <section className={classes.jobs_list}>
+      <Searchbar />
+    </section>
+  );
 }
 
 export default JobsList;
