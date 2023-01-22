@@ -1,0 +1,23 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  input {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    input {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+}
