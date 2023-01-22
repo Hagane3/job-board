@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import Searchbar from "../components/UI/Searchbar";
 import JobItem from "../components/JobItem/JobItem";
 import classes from "./JobsList.module.scss";
+import FilterPanel from "../components/FilterPanel/FilterPanel";
 
 function JobsList() {
   const jobs = useLoaderData();
@@ -11,9 +12,7 @@ function JobsList() {
     <section className={classes.jobs_list}>
       <Searchbar />
       <div className={classes.container}>
-        <div className={classes.filter}>
-          <h1>MOCK</h1>
-        </div>
+        <FilterPanel />
         <ul>
           <JobItem />
           <JobItem />

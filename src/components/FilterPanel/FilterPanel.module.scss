@@ -1,0 +1,49 @@
+.aside {
+  .container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    input {
+      height: 1.125rem;
+      width: 1.125rem;
+    }
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+  }
+
+  h2 {
+    color: #b9bdcf;
+    font-size: 0.9rem;
+    letter-spacing: 0.1rem;
+    margin: 2rem 0 1rem 0;
+  }
+
+  .locations {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .aside {
+    .container {
+      input {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+
+      label {
+        font-size: 1rem;
+      }
+    }
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
+}
