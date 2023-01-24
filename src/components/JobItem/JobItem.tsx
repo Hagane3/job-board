@@ -10,6 +10,8 @@ type Props = {
     location: string;
     title: string;
     thumbnail: string;
+    date: string;
+    workmode: string;
   };
 };
 
@@ -21,7 +23,7 @@ function JobItem({ data }: Props) {
         <h2>{data.company_name}</h2>
         <h3>{data.title}</h3>
         <div className={classes.workmode}>
-          <p>Full time</p>
+          <p>{data.workmode}</p>
         </div>
         <div className={classes.location_date}>
           <div>
@@ -30,7 +32,7 @@ function JobItem({ data }: Props) {
           </div>
           <div>
             <AiOutlineClockCircle color="#b9bdcf" />
-            <p>5 days ago</p>
+            <p>{data.date}</p>
           </div>
         </div>
       </div>
