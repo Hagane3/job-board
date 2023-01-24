@@ -5,6 +5,7 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 
 type Props = {
   data: {
+    id: number;
     company_name: string;
     description: string;
     location: string;
@@ -17,7 +18,12 @@ type Props = {
 
 function JobItem({ data }: Props) {
   return (
-    <section className={classes.job_container}>
+    <section
+      className={classes.job_container}
+      onClick={() => {
+        console.log(data.id);
+      }}
+    >
       <img src={data.thumbnail} />
       <div className={classes.description}>
         <h2>{data.company_name}</h2>

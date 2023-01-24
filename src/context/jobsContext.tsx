@@ -11,6 +11,7 @@ export function JobsProvider({ children }: Props) {
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [location, setLocation] = useState("All cities");
   const [isFulltime, setIsFulltime] = useState(false);
+  const [locations, setLocations] = useState([]);
 
   async function fetchJobs() {
     const response = await fetch(
@@ -19,7 +20,12 @@ export function JobsProvider({ children }: Props) {
     const data = await response.json();
     setJobs(data);
     setFilteredJobs(data);
+    setLocationsHandler(data);
   }
+
+  const setLocationsHandler = (array: any) => {
+    setLocations(Array.from(new Set(array.map((item: any) => item.location))));
+  };
 
   function worktimeToggler() {
     setIsFulltime(!isFulltime);
@@ -30,10 +36,19 @@ export function JobsProvider({ children }: Props) {
   }, []);
 
   useEffect(() => {
-    if (isFulltime) {
+    if (isFulltime && location === "All cities") {
       setFilteredJobs(jobs.filter((job: any) => job.workmode === "Full time"));
-    } else {
+    } else if (isFulltime && location !== "All cities") {
+      setFilteredJobs(
+        jobs.filter(
+          (job: any) =>
+            job.workmode === "Full time" && job.location === location
+        )
+      );
+    } else if (!isFulltime && location === "All cities") {
       setFilteredJobs(jobs);
+    } else if (!isFulltime && location !== "All cities") {
+      setFilteredJobs(jobs.filter((job: any) => job.location === location));
     }
   }, [isFulltime, location]);
 
@@ -45,6 +60,7 @@ export function JobsProvider({ children }: Props) {
         isFulltime,
         setLocation,
         worktimeToggler,
+        locations,
       }}
     >
       {children}
