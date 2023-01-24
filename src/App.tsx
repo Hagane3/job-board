@@ -1,8 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import JobsList, { loadJobs } from "./pages/JobsList";
+import JobsList from "./pages/JobsList";
 import Layout from "./pages/Layout";
 import JobDetails from "./pages/JobDetails";
+import { JobsProvider } from "./context/jobsContext";
 
 import "./App.scss";
 
@@ -14,7 +15,6 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <JobsList />,
-        loader: loadJobs,
       },
       {
         path: ":jobId",
@@ -27,7 +27,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      <JobsProvider>
+        <RouterProvider router={router} />
+      </JobsProvider>
     </div>
   );
 }
