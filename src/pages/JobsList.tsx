@@ -1,12 +1,14 @@
-import { useLoaderData } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 
 import Searchbar from "../components/UI/Searchbar";
 import JobItem from "../components/JobItem/JobItem";
 import classes from "./JobsList.module.scss";
 import FilterPanel from "../components/FilterPanel/FilterPanel";
 
+import context from "../context/jobsContext";
+
 function JobsList() {
-  const jobs = useLoaderData();
+  const { filteredJobs } = useContext(context);
 
   return (
     <section className={classes.jobs_list}>
@@ -14,11 +16,9 @@ function JobsList() {
       <div className={classes.container}>
         <FilterPanel />
         <ul>
-          <JobItem />
-          <JobItem />
-          <JobItem />
-          <JobItem />
-          <JobItem />
+          {filteredJobs.map((job: any, index: number) => {
+            return <JobItem key={index} data={job} />;
+          })}
         </ul>
       </div>
     </section>
@@ -26,11 +26,3 @@ function JobsList() {
 }
 
 export default JobsList;
-
-export async function loadJobs() {
-  const response = await fetch(
-    "https://job-board-ed857-default-rtdb.europe-west1.firebasedatabase.app/jobs_results.json"
-  );
-  const data = await response.json();
-  return data;
-}
