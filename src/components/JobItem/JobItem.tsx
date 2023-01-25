@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import classes from "./JobItem.module.scss";
 
 import { GiEarthAfricaEurope } from "react-icons/gi";
@@ -17,11 +19,13 @@ type Props = {
 };
 
 function JobItem({ data }: Props) {
+  const navigate = useNavigate();
+
   return (
     <section
       className={classes.job_container}
       onClick={() => {
-        console.log(data.id);
+        navigate("/job/" + data.id);
       }}
     >
       <img src={data.thumbnail} />

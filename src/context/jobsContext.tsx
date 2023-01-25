@@ -34,6 +34,13 @@ export function JobsProvider({ children }: Props) {
     setFilteredJobs(filteredJobs);
   }
 
+  const getDetailedJob = (jobid: number) => {
+    const filteredJob = jobs.filter((item: { id: number }) => {
+      return item.id === jobid;
+    });
+    return filteredJob[0];
+  };
+
   async function fetchJobs() {
     const response = await fetch(
       "https://job-board-ed857-default-rtdb.europe-west1.firebasedatabase.app/jobs_results.json"
@@ -79,6 +86,7 @@ export function JobsProvider({ children }: Props) {
         locations,
         setSearchbarValueHandler,
         searchbarValue,
+        getDetailedJob,
       }}
     >
       {children}
