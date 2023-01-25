@@ -13,6 +13,7 @@ export function JobsProvider({ children }: Props) {
   const [isFulltime, setIsFulltime] = useState(false);
   const [locations, setLocations] = useState([]);
   const [searchbarValue, setSearchbarValue] = useState<string>();
+  const [isLoading, setIsLoading] = useState(false);
 
   function filterJobs() {
     let filteredJobs = jobs;
@@ -42,6 +43,7 @@ export function JobsProvider({ children }: Props) {
   };
 
   async function fetchJobs() {
+    setIsLoading(true);
     const response = await fetch(
       "https://job-board-ed857-default-rtdb.europe-west1.firebasedatabase.app/jobs_results.json"
     );
@@ -49,6 +51,7 @@ export function JobsProvider({ children }: Props) {
     setJobs(data);
     setFilteredJobs(data);
     setLocationsHandler(data);
+    setIsLoading(false);
   }
 
   function setLocationsHandler(array: any) {
@@ -87,6 +90,7 @@ export function JobsProvider({ children }: Props) {
         setSearchbarValueHandler,
         searchbarValue,
         getDetailedJob,
+        isLoading,
       }}
     >
       {children}
