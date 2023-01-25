@@ -37,18 +37,22 @@ export function JobsProvider({ children }: Props) {
 
   useEffect(() => {
     if (isFulltime && location === "All cities") {
-      setFilteredJobs(jobs.filter((job: any) => job.workmode === "Full time"));
+      setFilteredJobs(
+        jobs.filter((job: { workmode: string }) => job.workmode === "Full time")
+      );
     } else if (isFulltime && location !== "All cities") {
       setFilteredJobs(
         jobs.filter(
-          (job: any) =>
+          (job: { workmode: string; location: string }) =>
             job.workmode === "Full time" && job.location === location
         )
       );
     } else if (!isFulltime && location === "All cities") {
       setFilteredJobs(jobs);
     } else if (!isFulltime && location !== "All cities") {
-      setFilteredJobs(jobs.filter((job: any) => job.location === location));
+      setFilteredJobs(
+        jobs.filter((job: { location: string }) => job.location === location)
+      );
     }
   }, [isFulltime, location]);
 

@@ -1,5 +1,4 @@
 import classes from "./Searchbar.module.scss";
-import { BsBag } from "react-icons/bs";
 
 function SearchBar() {
   return (
