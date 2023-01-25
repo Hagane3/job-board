@@ -12,8 +12,38 @@ export function JobsProvider({ children }: Props) {
   const [location, setLocation] = useState("All cities");
   const [isFulltime, setIsFulltime] = useState(false);
   const [locations, setLocations] = useState([]);
+  const [searchbarValue, setSearchbarValue] = useState<string>();
+  const [isLoading, setIsLoading] = useState(false);
+
+  function filterJobs() {
+    let filteredJobs = jobs;
+    if (location !== "All cities") {
+      filteredJobs = filteredJobs.filter(
+        (item: { location: string }) => item.location === location
+      );
+    }
+    if (isFulltime) {
+      filteredJobs = filteredJobs.filter(
+        (item: { workmode: string }) => item.workmode === "Full time"
+      );
+    }
+    if (searchbarValue) {
+      filteredJobs = filteredJobs.filter((item: { title: string }) =>
+        item.title.toLowerCase().includes(searchbarValue.toLowerCase())
+      );
+    }
+    setFilteredJobs(filteredJobs);
+  }
+
+  const getDetailedJob = (jobid: number) => {
+    const filteredJob = jobs.filter((item: { id: number }) => {
+      return item.id === jobid;
+    });
+    return filteredJob[0];
+  };
 
   async function fetchJobs() {
+    setIsLoading(true);
     const response = await fetch(
       "https://job-board-ed857-default-rtdb.europe-west1.firebasedatabase.app/jobs_results.json"
     );
@@ -21,11 +51,20 @@ export function JobsProvider({ children }: Props) {
     setJobs(data);
     setFilteredJobs(data);
     setLocationsHandler(data);
+    setIsLoading(false);
   }
 
-  const setLocationsHandler = (array: any) => {
-    setLocations(Array.from(new Set(array.map((item: any) => item.location))));
-  };
+  function setLocationsHandler(array: any) {
+    setLocations(
+      Array.from(
+        new Set(array.map((item: { location: string }) => item.location))
+      )
+    );
+  }
+
+  function setSearchbarValueHandler(value: string) {
+    setSearchbarValue(value);
+  }
 
   function worktimeToggler() {
     setIsFulltime(!isFulltime);
@@ -36,21 +75,8 @@ export function JobsProvider({ children }: Props) {
   }, []);
 
   useEffect(() => {
-    if (isFulltime && location === "All cities") {
-      setFilteredJobs(jobs.filter((job: any) => job.workmode === "Full time"));
-    } else if (isFulltime && location !== "All cities") {
-      setFilteredJobs(
-        jobs.filter(
-          (job: any) =>
-            job.workmode === "Full time" && job.location === location
-        )
-      );
-    } else if (!isFulltime && location === "All cities") {
-      setFilteredJobs(jobs);
-    } else if (!isFulltime && location !== "All cities") {
-      setFilteredJobs(jobs.filter((job: any) => job.location === location));
-    }
-  }, [isFulltime, location]);
+    filterJobs();
+  }, [isFulltime, location, searchbarValue]);
 
   return (
     <JobsContext.Provider
@@ -61,6 +87,10 @@ export function JobsProvider({ children }: Props) {
         setLocation,
         worktimeToggler,
         locations,
+        setSearchbarValueHandler,
+        searchbarValue,
+        getDetailedJob,
+        isLoading,
       }}
     >
       {children}
